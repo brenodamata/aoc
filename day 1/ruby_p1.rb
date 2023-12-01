@@ -1,29 +1,26 @@
+# frozen_string_literal: true
+
 require 'minitest/autorun'
 
 def calculate_calibration_sum(input)
-  sum = 0
-  input.each_line do |line|
+  calibrations = input.each_line.with_object([]) do |line, sum|
     numbers = line.scan(/-?\d/).map(&:to_i)
-    calibration = if numbers.empty?
-      0
-    else
-      "#{numbers.first}#{numbers.last}".to_i
-    end
-
-    sum += calibration
+    calibration = numbers.empty? ? 0 : "#{numbers.first}#{numbers.last}".to_i
+    sum << calibration
   end
 
-  return sum
+  calibrations.sum
 end
 
+# Test this script with:
 class TestCalibrationSum < Minitest::Test
   def test_with_multiple_numbers
-    input = "a1b2c3d4e5f"
+    input = 'a1b2c3d4e5f'
     assert_equal 15, calculate_calibration_sum(input)
   end
 
   def test_with_single_number
-    input = "treb7uchet"
+    input = 'treb7uchet'
     assert_equal 77, calculate_calibration_sum(input)
   end
 
@@ -38,11 +35,11 @@ class TestCalibrationSum < Minitest::Test
   end
 
   def test_with_puzzle_input
-    input = File.read("input.txt")
-    assert_equal 54916, calculate_calibration_sum(input)
+    input = File.read('input.txt')
+    assert_equal 54_916, calculate_calibration_sum(input)
   end
 end
 
-text = File.read("input.txt")
+text = File.read('input.txt')
 sum = calculate_calibration_sum(text)
 print("Result:\t#{sum}\n")

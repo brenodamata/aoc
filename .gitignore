@@ -2,3 +2,6 @@
 .rubocop.yml
 .rubocop_todo.yml
 .tool-versions
+.CACHEDIR.TAG
+target/
+.DS_Store

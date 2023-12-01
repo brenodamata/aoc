@@ -6,10 +6,8 @@ def calculate_calibration_sum(input)
     numbers = line.scan(/-?\d/).map(&:to_i)
     calibration = if numbers.empty?
       0
-    elsif numbers.length == 1
-      numbers[0] * 11
     else
-      numbers[0] * 10 + numbers[-1]
+      "#{numbers.first}#{numbers.last}".to_i
     end
 
     sum += calibration

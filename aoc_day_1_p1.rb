@@ -38,11 +38,11 @@ class TestCalibrationSum < Minitest::Test
   end
 
   def test_with_puzzle_input
-    input = File.read("aoc_day_1_p1_input.txt")
+    input = File.read("day_1_input.txt")
     assert_equal 54916, calculate_calibration_sum(input)
   end
 end
 
-text = File.read("aoc_day_1_p1_input.txt")
+text = File.read("day_1_input.txt")
 sum = calculate_calibration_sum(text)
 print("Result:\t#{sum}\n")
